@@ -1,3 +1,4 @@
+cat << 'EOF' > ~/Desktop/index.html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,110 +8,24 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0b0b0e;
-      --card-bg: #141419;
-      --border-color: #26262e;
-      --text: #ffffff;
-      --red: #ff4757;
-    }
+    :root { --bg: #0b0b0e; --card-bg: #141419; --border-color: #26262e; --text: #ffffff; --red: #ff4757; }
     * { box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
     .header { text-align: center; margin-bottom: 24px; }
-    .logo-text {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 22px;
-      letter-spacing: 2px;
-      text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
-      margin-bottom: 8px;
-    }
+    .logo-text { font-family: 'Press Start 2P', monospace; font-size: 22px; letter-spacing: 2px; text-shadow: 0 0 12px rgba(255, 255, 255, 0.9); margin-bottom: 8px; }
     .subtitle { font-size: 11px; color: #71717a; text-transform: uppercase; letter-spacing: 1.5px; }
-    .section-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin: 20px 0 10px;
-      width: 100%;
-      color: #a1a1aa;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+    .section-title { font-size: 13px; font-weight: 600; margin: 20px 0 10px; width: 100%; color: #a1a1aa; text-transform: uppercase; letter-spacing: 0.5px; }
     .services { display: flex; gap: 12px; width: 100%; }
-    .service-card {
-      flex: 1;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 18px 12px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .service-card.selected {
-      border-color: #fff;
-      box-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
-      background: #1c1c24;
-    }
+    .service-card { flex: 1; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 18px 12px; text-align: center; cursor: pointer; transition: all 0.2s ease; }
+    .service-card.selected { border-color: #fff; box-shadow: 0 0 18px rgba(255, 255, 255, 0.35); background: #1c1c24; }
     .service-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
     .service-price { font-size: 16px; font-weight: 700; color: #fff; }
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 8px;
-      width: 100%;
-      margin-top: 10px;
-    }
-    .day {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      aspect-ratio: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .day.booked {
-      background: #221111;
-      border-color: var(--red);
-      color: var(--red);
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-    .day.selected {
-      background: #fff;
-      color: #000;
-      font-weight: bold;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-    }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; width: 100%; margin-top: 10px; }
+    .day { background: var(--card-bg); border: 1px solid var(--border-color); aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 10px; font-size: 13px; cursor: pointer; transition: all 0.2s ease; }
+    .day.booked { background: #221111; border-color: var(--red); color: var(--red); cursor: not-allowed; opacity: 0.6; }
+    .day.selected { background: #fff; color: #000; font-weight: bold; box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); }
     .status-text { font-size: 8px; margin-top: 2px; text-transform: uppercase; }
-    .book-btn {
-      width: 100%;
-      background: #fff;
-      color: #000;
-      border: none;
-      padding: 16px;
-      border-radius: 14px;
-      font-size: 14px;
-      font-weight: 700;
-      margin-top: 24px;
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-      display: none;
-      letter-spacing: 0.5px;
-    }
+    .book-btn { width: 100%; background: #fff; color: #000; border: none; padding: 16px; border-radius: 14px; font-size: 14px; font-weight: 700; margin-top: 24px; cursor: pointer; box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); display: none; letter-spacing: 0.5px; }
   </style>
 </head>
 <body>
@@ -139,8 +54,8 @@
   <button class="book-btn" id="submit-btn">ЗАБРОНИРОВАТЬ ДАТУ</button>
 
   <script>
-    const tg = window.Telegram.WebApp;
-    tg.expand();
+    const tg = window.Telegram ? window.Telegram.WebApp : null;
+    if (tg) tg.expand();
 
     let selectedFormat = null;
     let selectedPrice = null;
@@ -185,16 +100,24 @@
     }
 
     document.getElementById('submit-btn').addEventListener('click', () => {
-      if (!selectedFormat || !selectedDate) return;
+      if (!selectedFormat || !selectedDate) {
+        alert("Выберите формат и дату!");
+        return;
+      }
 
-      const data = {
+      const payload = {
         format: selectedFormat,
         price: selectedPrice,
         date: selectedDate
       };
 
-      tg.sendData(JSON.stringify(data));
+      if (tg && tg.sendData) {
+        tg.sendData(JSON.stringify(payload));
+      } else {
+        alert("Telegram WebApp не обнаружен. Откройте приложение через кнопку в боте!");
+      }
     });
   </script>
 </body>
 </html>
+EOF
